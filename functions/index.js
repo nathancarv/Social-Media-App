@@ -25,7 +25,10 @@ exports.getScreams = functions.https.onRequest((req, res) => {
 });
 
 exports.createScream = functions.https.onRequest((req, res) => {
-  const newScream = {
+  if (req.method !== 'POST'){
+      return res.status(400).json({error: "Method not allowed"});
+  }
+    const newScream = {
     body: req.body.body,
     userHandle: req.body.userHandle,
     createdAt: admin.firestore.Timestamp.fromDate(new Date())
