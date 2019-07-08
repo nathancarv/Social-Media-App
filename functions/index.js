@@ -6,8 +6,9 @@ admin.initializeApp();
 const express = require('express');
 const app = express();
 
-exports.getScreams = functions.https.onRequest((req, res) => {
-  admin
+
+app.get('/screams',(req, res)=>{
+    admin
     .firestore()
     .collection("screams")
     .get()
@@ -19,7 +20,8 @@ exports.getScreams = functions.https.onRequest((req, res) => {
       return res.json(screams);
     })
     .catch(err => console.error(err));
-});
+  });
+
 
 exports.createScream = functions.https.onRequest((req, res) => {
   if (req.method !== 'POST'){
@@ -43,3 +45,4 @@ exports.createScream = functions.https.onRequest((req, res) => {
     });
 });
  
+exports.api = functions.https.onRequest(app);
