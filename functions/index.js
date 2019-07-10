@@ -3,8 +3,21 @@ const admin = require("firebase-admin");
 
 admin.initializeApp();
 
+const firebaseConfig = {
+  apiKey: "AIzaSyB-DDEV1hBQLyRNKOXWSx-Xd7o8m-R5dMA",
+  authDomain: "socialmediaapp-513bb.firebaseapp.com",
+  databaseURL: "https://socialmediaapp-513bb.firebaseio.com",
+  projectId: "socialmediaapp-513bb",
+  storageBucket: "socialmediaapp-513bb.appspot.com",
+  messagingSenderId: "210918323012",
+  appId: "1:210918323012:web:115e8dcad70d491a"
+};
+
 const express = require("express");
 const app = express();
+
+const firebase = require('firebase');
+firebase.initializeApp(firebaseConfig);
 
 app.get("/screams", (req, res) => {
   admin
